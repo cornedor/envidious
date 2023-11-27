@@ -1,6 +1,6 @@
 import { headers as getHeaders } from "next/headers";
 
-import { getInstance } from "@/app/getInstance";
+import { getInstance } from "@/api/getInstance";
 import { Video } from "@/api/Video";
 
 export interface Playlist {

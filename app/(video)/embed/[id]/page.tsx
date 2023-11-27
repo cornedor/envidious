@@ -1,6 +1,6 @@
 import { VideoPlayer } from "@/components/VideoPlayer";
 import { fetchVideo } from "@/api/fetchVideo";
-import { getInstance } from "@/app/getInstance";
+import { getInstance } from "@/api/getInstance";
 
 export default async function WatchPage({
   params: { id },

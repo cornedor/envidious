@@ -2,7 +2,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
 import { SearchSubmitButton } from "./SearchSubmitButton";
-import { getInstance } from "@/app/getInstance";
+import { getInstance } from "@/api/getInstance";
 
 async function submitSearch(formData: FormData) {
   "use server";

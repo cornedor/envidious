@@ -1,7 +1,7 @@
 "use server";
 import { cookies, headers as getHeaders } from "next/headers";
 
-import { getInstance } from "@/app/getInstance";
+import { getInstance } from "@/api/getInstance";
 import { revalidateTag } from "next/cache";
 
 export interface Subscription {

@@ -1,6 +1,6 @@
 import { cookies, headers as getHeaders } from "next/headers";
 
-import { getInstance } from "@/app/getInstance";
+import { getInstance } from "@/api/getInstance";
 
 export async function fetchHistory() {
   const instance = getInstance();

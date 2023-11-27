@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { VideoCard } from "@/components/VideoCard";
 import { Header } from "@/components/Header";
-import { getInstance } from "@/app/getInstance";
+import { getInstance } from "@/api/getInstance";
 import { VideoPlayer } from "@/components/VideoPlayer";
 import { fetchVideo } from "@/api/fetchVideo";
 

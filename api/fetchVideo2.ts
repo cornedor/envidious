@@ -2,7 +2,7 @@
 import { headers as getHeaders } from "next/headers";
 import Innertube from "youtubei.js";
 
-import { getInstance } from "@/app/getInstance";
+import { getInstance } from "@/api/getInstance";
 
 export async function fetchInnertubeInfo(videoId: string) {
   const instance = getInstance();

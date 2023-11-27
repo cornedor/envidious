@@ -9,7 +9,7 @@ import { SubscribeButton } from "@/components/SubscribeButton";
 import { fetchVideo } from "@/api/fetchVideo";
 import { fetchPlaylist } from "@/api/fetchPlaylist";
 import { fetchSubscriptions } from "@/api/fetchSubscriptions";
-import { getInstance } from "@/app/getInstance";
+import { getInstance } from "@/api/getInstance";
 import { fetchInnertubeInfo } from "@/api/fetchVideo2";
 
 export default async function WatchPage({

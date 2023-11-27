@@ -19,9 +19,6 @@
     "react-dom": "^18",
     "remixicon": "^3.5.0",
     "tailwind-merge": "^2.0.0",
-    "video.js": "^8.6.1",
-    "videojs-contrib-dash": "^5.1.1",
-    "videojs-contrib-quality-levels": "^4.0.0",
     "youtubei.js": "^7.0.0"
   },
   "devDependencies": {

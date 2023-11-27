@@ -1,3 +1,5 @@
+const url = new URL(process.env.NEXT_APP_INVIDIOUS_INSTANCE);
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   // async rewrites() {
@@ -12,12 +14,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'video.cd0.nl',
-        pathname: '/vi/**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'yewtu.be',
+        hostname: url.hostname,
         pathname: '/vi/**',
       },
       {

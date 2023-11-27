@@ -1,6 +1,6 @@
 import { RedirectType, redirect } from "next/navigation";
 import { fetchPlaylist } from "@/api/fetchPlaylist";
-import { getInstance } from "@/app/getInstance";
+import { getInstance } from "@/api/getInstance";
 
 export default async function PlaylistRedirect({
   params: { id },
