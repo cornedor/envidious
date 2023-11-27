@@ -10,13 +10,13 @@ export default function TrendingSubMenu() {
       <NavLink href="/trending" sub>
         Now
       </NavLink>
-      <NavLink href="/trending" sub>
+      <NavLink href="/trending?type=Music" sub>
         Music
       </NavLink>
-      <NavLink href="/trending" sub>
+      <NavLink href="/trending?type=Gaming" sub>
         Gaming
       </NavLink>
-      <NavLink href="/trending" sub>
+      <NavLink href="/trending?type=Movies" sub>
         Movies
       </NavLink>
     </>

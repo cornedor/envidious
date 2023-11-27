@@ -39,8 +39,6 @@ export function VideoCard({ video, playlistId, isPlaying }: VideoCardProps) {
       return;
     }
 
-    console.log(s);
-
     setVideoMeta(s);
   }, [video.videoId]);
 
@@ -54,7 +52,7 @@ export function VideoCard({ video, playlistId, isPlaying }: VideoCardProps) {
     );
   }
 
-  const miniVideo = videoMeta?.formatStreams.find(
+  const miniVideo = videoMeta?.formatStreams?.find(
     (item) => item.quality === "medium",
   );
 

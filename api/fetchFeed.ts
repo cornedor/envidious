@@ -29,7 +29,6 @@ export async function fetchFeed(searchParams: { region?: string }) {
   });
 
   const data = await result.json();
-  console.log(headers, searchParams, data);
 
   return data as Feed | undefined;
 }

@@ -26,7 +26,5 @@ export async function fetchSearch(query: string, page: number = 1) {
 
   const data = await result.json();
 
-  console.log(data);
-
   return data as Array<Video | Playlist | Channel> | undefined;
 }

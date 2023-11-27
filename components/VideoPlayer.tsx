@@ -3,7 +3,7 @@
 import "plyr/dist/plyr.css";
 
 import { useRouter } from "next/navigation";
-import { useLayoutEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef } from "react";
 import dashjs from "dashjs";
 import Plyr from "plyr";
 import React from "react";
@@ -11,7 +11,7 @@ import React from "react";
 import { VideoDetails } from "@/api/Video";
 import { getThumbnail } from "@/api/getThumbnail";
 import { fetchSponsorBlock } from "@/api/fetchSponsorBlock";
-import { fetchInnertubeInfo } from "@/api/fetchVideo2";
+import { fetchInnertubeInfo } from "@/api/fetchInnertubeInfo";
 
 interface VideoPlayerProps {
   className?: string;
@@ -33,7 +33,7 @@ export const VideoPlayer = React.memo(function VideoPlayer({
 
   const { push } = useRouter();
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (!ref.current) {
       return;
     }
@@ -73,8 +73,6 @@ export const VideoPlayer = React.memo(function VideoPlayer({
     dash.setInitialMediaSettingsFor("audio", {
       role: "main",
     });
-
-    console.log(dash);
 
     let player: Plyr;
 
@@ -170,14 +168,11 @@ export const VideoPlayer = React.memo(function VideoPlayer({
       window.player = player;
     };
 
-    dash.on("manifestLoaded", (e) => {
-      console.log("EVENT -> manifestLoaded", e, dash.getTracksFor("audio"));
-    });
     dash.on("streamInitialized", (e) => {
       console.log("EVENT -> streamInitialized", e, dash.getTracksFor("audio"));
       const matchingAudioTracks = dash.getTracksFor("audio").map((item) => {
         // This check sucks, but is the only somewhat unique difference
-        const match = dashManifest?.audioSets.find(
+        const match = dashManifest?.audioSets?.find(
           (rep) =>
             rep.representations[0].bitrate === item.bitrateList[0].bandwidth,
         );
@@ -187,15 +182,13 @@ export const VideoPlayer = React.memo(function VideoPlayer({
         }
       });
     });
-    dash.on("ttmlParsed", (e) => console.log("EVENT -> ttmlParsed", e));
     dash.on("bufferLoaded", bufferLoaded);
 
-    dash.on("qualityChangeRequested", (e) => console.log(e));
     dash.on("qualityChangeRendered", (e) => {
       if (player) {
         player.quality = e.newQuality;
       }
-      console.log(e);
+      console.log("EVENT -> qualityChangeRendered", e);
     });
 
     // @ts-ignore
@@ -241,6 +234,7 @@ export const VideoPlayer = React.memo(function VideoPlayer({
         style={{ width: "100%", height: "100%" }}
         className={className}
         crossOrigin=""
+        autoPlay
         playsInline
         controls
         poster={thumbnail.url}

@@ -23,7 +23,6 @@ export async function fetchHistory() {
   });
 
   const data = await result.json();
-  console.log(headers, data);
 
   return data as string[] | undefined;
 }

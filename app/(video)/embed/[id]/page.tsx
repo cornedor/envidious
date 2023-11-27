@@ -10,7 +10,6 @@ export default async function WatchPage({
   const data = await fetchVideo(id);
 
   if (!data?.videoThumbnails) {
-    console.log(data);
     return <div>404</div>;
   }
   return (

@@ -11,9 +11,9 @@ export default async function BrowserLayout({
 }) {
   const subs = await fetchSubscriptions();
   return (
-    <div className="min-h-screen text-slate-900">
+    <div className="flex min-h-screen flex-col text-slate-900">
       <Header />
-      <div className="flex">
+      <div className="flex flex-1">
         <div className="flex w-80 flex-col  border-r border-r-slate-300 bg-slate-200">
           <NavLink href="/trending">Trending</NavLink>
           <TrendingSubMenu />

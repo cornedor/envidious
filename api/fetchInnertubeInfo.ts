@@ -13,14 +13,16 @@ export async function fetchInnertubeInfo(videoId: string) {
     location: "US",
   });
 
-  const info = await youtube.getInfo(videoId);
+  const info = await youtube.getInfo(videoId).catch(() => null);
 
-  info.getStreamingInfo().audio_sets;
-
-  // console.log(info);
+  let audioSets;
 
   try {
-    const manifest = await info.toDash((url) => {
+    audioSets = info?.getStreamingInfo().audio_sets;
+  } catch {}
+
+  try {
+    const manifest = await info?.toDash((url) => {
       url.searchParams.append("__host", url.host);
 
       const instanceUrl = new URL(instance);
@@ -30,19 +32,21 @@ export async function fetchInnertubeInfo(videoId: string) {
       return new URL(url, instance);
     });
 
+    if (!manifest) {
+      throw new Error();
+    }
+
     const uri =
       "data:application/dash+xml;charset=utf-8;base64," + btoa(manifest);
 
     return {
       dash: uri,
-      audioSets: info.getStreamingInfo().audio_sets,
+      audioSets,
     };
   } catch {
-    console.log(info.streaming_data?.dash_manifest_url);
-
     return {
-      hls: info.streaming_data?.hls_manifest_url,
-      audioSets: info.getStreamingInfo().audio_sets,
+      hls: info?.streaming_data?.hls_manifest_url,
+      audioSets,
     };
   }
 }

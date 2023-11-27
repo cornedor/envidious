@@ -91,7 +91,7 @@ export interface VideoDetails extends Video {
   adaptiveFormats: AdaptiveFormat[];
   formatStreams: FormatStream[];
   recommendedVideos: Video[];
-  authorThumbnails: AuthorThumbnail[];
+  authorThumbnails?: AuthorThumbnail[];
   subCountText: string;
   publishedText: string;
   likeCount: number;

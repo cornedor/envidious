@@ -16,6 +16,7 @@ export function VideoGrid({ items }: VideoGridProps) {
   return (
     <div className="video-grid inline-grid gap-4 p-4 ">
       {items.map((item) => {
+        console.log(item);
         switch (item.type) {
           case "playlist":
             return <PlaylistCard key={item.playlistId} playlist={item} />;

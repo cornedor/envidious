@@ -10,7 +10,8 @@ import { fetchVideo } from "@/api/fetchVideo";
 import { fetchPlaylist } from "@/api/fetchPlaylist";
 import { fetchSubscriptions } from "@/api/fetchSubscriptions";
 import { getInstance } from "@/api/getInstance";
-import { fetchInnertubeInfo } from "@/api/fetchVideo2";
+import { fetchInnertubeInfo } from "@/api/fetchInnertubeInfo";
+import { notFound } from "next/navigation";
 
 export default async function WatchPage({
   searchParams,
@@ -40,6 +41,10 @@ export default async function WatchPage({
   const nextInPlaylistUrl = nextInPlaylist
     ? `/watch?v=${nextInPlaylist.videoId}&list=${playlist?.playlistId}`
     : undefined;
+
+  if (!data.authorThumbnails) {
+    notFound();
+  }
 
   const authorThumbnail = data.authorThumbnails.at(-1);
 

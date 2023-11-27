@@ -8,8 +8,6 @@ export default async function ChannelPage({
 }) {
   const channel = await fetchChannel(id);
 
-  console.log(channel);
-
   if (!channel) {
     return <>404</>;
   }

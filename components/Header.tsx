@@ -6,7 +6,6 @@ import { getInstance } from "@/api/getInstance";
 
 async function submitSearch(formData: FormData) {
   "use server";
-  console.log(formData);
 
   return redirect(`/results?search_query=${formData.get("search_query")}`);
 }

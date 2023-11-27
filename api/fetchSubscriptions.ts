@@ -32,7 +32,6 @@ export async function fetchSubscriptions() {
   });
 
   const data = await result.json();
-  console.log(headers, data);
 
   return data as Subscription[] | undefined;
 }
