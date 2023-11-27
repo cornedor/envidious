@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
-import "remixicon/fonts/remixicon.css";
-import clsx from "clsx";
+import "../globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,10 +15,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={clsx(inter.className, "selection:bg-teal-400 ")}>
-        {children}
-      </body>
-    </html>
+    <div className="min-h-screen text-slate-900">
+      <main className="min-h-screen bg-slate-50">{children}</main>
+    </div>
   );
 }

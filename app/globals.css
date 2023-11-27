@@ -2,26 +2,59 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+/* Video browser grid */
+.video-grid {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+@media (min-width: 1030px) {
+  .video-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+/* 1030 + 320 + 16 */
+@media (min-width: 1366px) {
+  .video-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1702px) {
+  .video-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/**
+ * Theatre mode video player that tries to use up a 
+ * a big area while keeping aspect ratio
+ */
+
+.player {
+  max-height: calc(100vh - 120px);
+  max-width: 100%;
+  aspect-ratio: 16 / 9;
+}
+
+.embed .plyr,
+.player .plyr {
+  width: 100%;
+  height: 100%;
+}
+
+.html-content a {
+  @apply text-blue-700 underline;
+}
+
+.html-content a:active {
+  @apply text-red-700 underline;
+}
+
+.fade-out-text {
+  mask-image: linear-gradient(
+    to bottom,
+    black calc(100% - var(--mask-height, 2em)),
+    rgba(0, 0, 0, 0) 100%
+  );
 }
