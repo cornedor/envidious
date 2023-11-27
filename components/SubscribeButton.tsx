@@ -29,7 +29,7 @@ export function SubscribeButton({
       <input type="hidden" name="instant" value={instant ? "yes" : "no"} />
       <button
         className={twMerge(
-          "rounded bg-slate-200 p-2 hover:bg-slate-300 hover:shadow active:bg-slate-200",
+          "dark:active-bg-slate-800 rounded bg-slate-200 p-2 hover:bg-slate-300 hover:shadow active:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-900",
           className,
         )}
         type="submit"

@@ -29,29 +29,28 @@ export async function ChannelLayout({
             height={banner?.height}
           />
         )}
-        <div className="flex gap-2 bg-slate-200 px-2 py-1">
+        <div className="flex gap-2 bg-slate-200 px-2 py-1 dark:bg-slate-700">
           <Link
             href={`/channel/${channel.authorId}`}
-            className="rounded p-2 px-4 hover:bg-slate-300 hover:underline"
+            className="rounded p-2 px-4 hover:bg-slate-300 hover:underline dark:hover:bg-slate-800"
           >
             Videos
           </Link>
           <Link
             href={`/channel/${channel.authorId}/playlists`}
-            className="rounded p-2 px-4 hover:bg-slate-300 hover:underline"
+            className="rounded p-2 px-4 hover:bg-slate-300 hover:underline dark:hover:bg-slate-800"
           >
             Playlists
           </Link>
           <Link
             href="/"
-            className="rounded p-2 px-4 hover:bg-slate-300 hover:underline"
+            className="rounded p-2 px-4 hover:bg-slate-300 hover:underline dark:hover:bg-slate-800"
           >
             Channels
           </Link>
           <div className="flex-1" />
           <SubscribeButton
             authorId={channel.authorId}
-            className="bg-slate-300 hover:bg-slate-400 active:bg-slate-300"
             subscribed={subs?.some(
               (item) => item.authorId === channel.authorId,
             )}

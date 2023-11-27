@@ -29,7 +29,7 @@ export function Description({
         dangerouslySetInnerHTML={{ __html: html }}
       />
       <button
-        className="mt-1 rounded bg-slate-200 p-1 px-2 hover:bg-slate-300"
+        className="mt-1 rounded bg-slate-200 p-1 px-2 hover:bg-slate-300 active:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-900 dark:active:bg-slate-800"
         onClick={() => setOpen((v) => !v)}
       >
         {open ? labelLess : labelMore}

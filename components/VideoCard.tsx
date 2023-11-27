@@ -46,7 +46,7 @@ export function VideoCard({ video, playlistId, isPlaying }: VideoCardProps) {
     return (
       <div
         className={
-          "w-80 gap-1 overflow-hidden rounded border border-solid border-slate-300 bg-slate-200"
+          "w-80 gap-1 overflow-hidden rounded border border-solid  bg-slate-200 dark:bg-slate-700"
         }
       ></div>
     );
@@ -63,7 +63,7 @@ export function VideoCard({ video, playlistId, isPlaying }: VideoCardProps) {
         setIsHovering(false);
       }}
       className={clsx(
-        "w-80 gap-1 overflow-hidden rounded border border-solid border-slate-300 bg-slate-200 transition-all hover:scale-[1.02] hover:shadow-md",
+        "w-80 gap-1 overflow-hidden rounded border border-solid border-slate-300 bg-slate-200 transition-all hover:scale-[1.02] hover:shadow-md dark:border-slate-900 dark:bg-slate-700",
         {
           "ring ring-teal-500": isPlaying,
         },
@@ -80,7 +80,7 @@ export function VideoCard({ video, playlistId, isPlaying }: VideoCardProps) {
             : { v: video.videoId },
         }}
       >
-        <div className="relative w-full overflow-hidden border-b border-slate-300">
+        <div className="relative w-full overflow-hidden border-b border-slate-300 dark:border-slate-900">
           <Image
             src={thumbnail?.url}
             width={thumbnail?.width}
@@ -97,7 +97,7 @@ export function VideoCard({ video, playlistId, isPlaying }: VideoCardProps) {
               muted
             />
           )}
-          <div className="absolute bottom-1 right-1 rounded-sm bg-slate-800/80 px-1  text-xs text-slate-50">
+          <div className="absolute bottom-1 right-1 rounded-sm bg-slate-800/80 px-1 text-xs text-slate-50">
             {video.lengthSeconds === 0 ? (
               "short"
             ) : (
@@ -118,7 +118,7 @@ export function VideoCard({ video, playlistId, isPlaying }: VideoCardProps) {
         </div>
         <div className="line-clamp-2 h-12 w-full px-2">{video.title}</div>
       </Link>
-      <div className="flex gap-2 px-2 pb-2 text-sm text-slate-500">
+      <div className="flex gap-2 px-2 pb-2 text-sm text-slate-500 dark:text-slate-400">
         <Link
           className="flex-1 overflow-ellipsis whitespace-nowrap hover:underline"
           href={video.authorUrl}

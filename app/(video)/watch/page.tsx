@@ -88,8 +88,8 @@ export default async function WatchPage({
       <div className="mx-auto flex max-w-[1400px] justify-between gap-4 px-8 pt-8">
         <div className="sticky top-0 flex w-full  flex-col gap-4 p-2">
           <h1 className="text-xl font-semibold">{data.title}</h1>
-          <div className="flex rounded border border-slate-300">
-            <div className="rounded-w flex flex-1 items-center gap-2 rounded bg-slate-100 p-2 pr-4">
+          <div className="flex rounded border border-slate-300 dark:border-slate-800">
+            <div className="rounded-w flex flex-1 items-center gap-2 rounded bg-slate-100 p-2 pr-4 dark:bg-slate-600">
               <Link href={data.authorUrl}>
                 {authorThumbnail && (
                   <Image
@@ -113,9 +113,9 @@ export default async function WatchPage({
                 )}
               />
             </div>
-            <div className="flex items-center gap-2 rounded-e bg-slate-200 p-2 pl-4 font-semibold">
+            <div className="flex items-center gap-2 rounded-e bg-slate-200 p-2 pl-4 font-semibold dark:bg-slate-500 dark:text-slate-200">
               Posted {data.publishedText}
-              <button className="rounded bg-slate-300 p-2 hover:bg-slate-200 hover:shadow active:bg-slate-200">
+              <button className="rounded bg-slate-300 p-2 hover:bg-slate-200 hover:shadow active:bg-slate-200 dark:bg-slate-700 dark:hover:bg-slate-800 dark:active:bg-slate-700">
                 <i className="ri-heart-line"></i> {data.likeCount}
               </button>
             </div>

@@ -8,14 +8,14 @@ export function PlaylistCard({ playlist }: { playlist: Playlist }) {
   }
 
   return (
-    <div className="w-80 gap-1 overflow-hidden rounded border border-solid border-slate-300 bg-slate-200 transition-shadow hover:shadow-md">
+    <div className="w-80 gap-1 overflow-hidden rounded border border-solid border-slate-300 bg-slate-200 transition-shadow hover:shadow-md dark:border-slate-900 dark:bg-slate-700 ">
       <Link
         className="group"
         href={{
           pathname: `/playlist/${encodeURIComponent(playlist.playlistId)}`,
         }}
       >
-        <div className="relative w-full overflow-hidden border-b border-slate-300">
+        <div className="relative w-full overflow-hidden border-b border-slate-300 dark:border-slate-900">
           <Image
             src={playlist.playlistThumbnail}
             width={480}
@@ -29,7 +29,7 @@ export function PlaylistCard({ playlist }: { playlist: Playlist }) {
         </div>
         <div className="line-clamp-2 h-12 w-full px-2">{playlist.title}</div>
       </Link>
-      <div className="flex gap-2 px-2 pb-2 text-sm text-slate-500">
+      <div className="flex gap-2 px-2 pb-2 text-sm text-slate-500 dark:text-slate-400">
         <Link
           className="flex-1 overflow-ellipsis whitespace-nowrap hover:underline"
           href={playlist.authorUrl}

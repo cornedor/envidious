@@ -28,7 +28,7 @@ export function Header() {
   const username = cookies().get("iv-username");
 
   return (
-    <header className="sticky top-0 z-20 flex h-16 w-full items-center justify-between bg-slate-600 px-4 text-slate-50">
+    <header className="sticky top-0 z-20 flex h-16 w-full items-center justify-between bg-slate-600 px-4 text-slate-50 dark:bg-slate-900 dark:text-slate-300">
       <Link className="text-lg font-semibold" href="/">
         Envidious
       </Link>
@@ -40,7 +40,7 @@ export function Header() {
           name="search_query"
           type="search"
           placeholder="Search"
-          className="w-80 rounded-l-full bg-slate-500 px-4 py-1 focus:outline-none"
+          className="w-80 rounded-l-full bg-slate-500 px-4 py-1 focus:outline-none dark:bg-slate-700"
         />
         <SearchSubmitButton />
       </form>

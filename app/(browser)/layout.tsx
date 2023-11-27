@@ -11,17 +11,19 @@ export default async function BrowserLayout({
 }) {
   const subs = await fetchSubscriptions();
   return (
-    <div className="flex min-h-screen flex-col text-slate-900">
+    <div className="flex min-h-screen flex-col text-slate-900 dark:text-slate-300">
       <Header />
       <div className="flex flex-1">
-        <div className="flex w-80 flex-col  border-r border-r-slate-300 bg-slate-200">
+        <div className="flex w-80 flex-col  border-r border-r-slate-300 bg-slate-200 dark:border-r-slate-600 dark:bg-slate-700">
           <NavLink href="/trending">Trending</NavLink>
           <TrendingSubMenu />
           <NavLink href="/feed/subscriptions">Subscriptions</NavLink>
           <SubsSubMenu subs={subs ?? []} />
           <NavLink href="/trending">Playlists</NavLink>
         </div>
-        <main className="max-w-[1400px] flex-1 bg-slate-50">{children}</main>
+        <main className="max-w-[1400px] flex-1 bg-slate-50 dark:bg-slate-800">
+          {children}
+        </main>
       </div>
     </div>
   );
