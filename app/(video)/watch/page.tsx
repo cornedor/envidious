@@ -12,14 +12,27 @@ import { fetchSubscriptions } from "@/api/fetchSubscriptions";
 import { getInstance } from "@/api/getInstance";
 import { fetchInnertubeInfo } from "@/api/fetchInnertubeInfo";
 import { notFound } from "next/navigation";
+import { Metadata, ResolvingMetadata } from "next";
 
-export default async function WatchPage({
-  searchParams,
-}: {
+interface WatchPageProps {
   searchParams: { v?: string; list?: string };
-}) {
+}
+
+export async function generateMetadata({
+  searchParams,
+}: WatchPageProps): Promise<Metadata> {
   if (!searchParams.v) {
-    return <div>404</div>;
+    return {};
+  }
+  const data = await fetchVideo(searchParams.v);
+  return {
+    title: `${data?.title} | Envidious`,
+  };
+}
+
+export default async function WatchPage({ searchParams }: WatchPageProps) {
+  if (!searchParams.v) {
+    notFound();
   }
   const data = await fetchVideo(searchParams.v);
   const dashManifest = await fetchInnertubeInfo(searchParams.v);

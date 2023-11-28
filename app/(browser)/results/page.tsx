@@ -1,5 +1,10 @@
 import { VideoGrid } from "@/components/VideoGrid";
 import { fetchSearch } from "@/api/fetchSearch";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Search results",
+};
 
 export default async function TrendingPage({
   searchParams,

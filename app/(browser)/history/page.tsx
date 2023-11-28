@@ -1,5 +1,10 @@
 import { fetchHistory } from "@/api/fetchHistory";
+import { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "History",
+};
 
 export default async function SubscriptionsPage() {
   const history = await fetchHistory();

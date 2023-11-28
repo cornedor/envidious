@@ -3,6 +3,7 @@ import { Header } from "@/components/Header";
 import { NavLink } from "@/components/NavLink";
 import SubsSubMenu from "@/components/SubsSubMenu";
 import TrendingSubMenu from "@/components/TrendingSubMenu";
+import { Suspense } from "react";
 
 export default async function BrowserLayout({
   children,
@@ -22,7 +23,7 @@ export default async function BrowserLayout({
           <NavLink href="/trending">Playlists</NavLink>
         </div>
         <main className="max-w-[1400px] flex-1 bg-slate-50 dark:bg-slate-800">
-          {children}
+          <Suspense fallback={<>...</>}>{children}</Suspense>
         </main>
       </div>
     </div>

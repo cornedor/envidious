@@ -2,6 +2,11 @@ import { cookies } from "next/headers";
 import { fetchPreferences } from "@/api/fetchPreferences";
 import { fetchTrending } from "@/api/fetchTrending";
 import { VideoGrid } from "@/components/VideoGrid";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Trending feed",
+};
 
 export default async function TrendingPage({
   searchParams,

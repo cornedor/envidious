@@ -85,6 +85,7 @@ export const VideoPlayer = React.memo(function VideoPlayer({
       const bitrates = dash.getBitrateInfoListFor("video");
 
       const sponsorBlockSegment = await sponsorBlockPromise;
+
       player = new Plyr(ref.current, {
         captions: {
           active: true,

@@ -1,7 +1,12 @@
 import { Feed, fetchFeed } from "@/api/fetchFeed";
 import { VideoGrid } from "@/components/VideoGrid";
 import { getVideoType } from "@/components/getVideoType";
+import { Metadata } from "next";
 import { cookies } from "next/headers";
+
+export const metadata: Metadata = {
+  title: "Subscriptions feed",
+};
 
 function stripShorts(feed: Feed | undefined) {
   const stripShorts = cookies().get("ev-strip-shorts")?.value;
