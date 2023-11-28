@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -7,15 +8,62 @@ import { Playlist } from "@/api/fetchPlaylists";
 
 import { VideoCard } from "./VideoCard";
 import { PlaylistCard } from "./PlaylistCard";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 interface VideoGridProps {
   items: Array<Video | Playlist | Channel>;
+  loadMore?: (
+    page: number,
+  ) => Promise<Array<Video | Playlist | Channel> | undefined>;
 }
 
-export function VideoGrid({ items }: VideoGridProps) {
+export function VideoGrid({ items, loadMore }: VideoGridProps) {
+  const [moreItems, setMoreItems] = useState<Array<Video | Playlist | Channel>>(
+    [],
+  );
+  const [isLoading, setIsLoading] = useState<0 | 1 | -1>(0);
+  const [page, setPage] = useState(1);
+  const ref = useRef<HTMLButtonElement | null>(null);
+
+  const loadMoreCallback = useCallback<IntersectionObserverCallback>(
+    ([entry]) => {
+      if (!loadMore) {
+        return;
+      }
+      if (entry.isIntersecting) {
+        setIsLoading(1);
+        loadMore(page + 1).then((items) => {
+          if (items && items.length > 0) {
+            setMoreItems((o) => [...o, ...items]);
+            setIsLoading(0);
+            setPage(page + 1);
+          } else {
+            setIsLoading(-1);
+          }
+        });
+      }
+    },
+    [loadMore, page],
+  );
+
+  useEffect(() => {
+    if (!ref.current || !loadMore) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(loadMoreCallback, {
+      rootMargin: "300px 0px",
+    });
+    observer.observe(ref.current);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [loadMore, loadMoreCallback]);
+
   return (
     <div className="video-grid inline-grid gap-4 p-4 ">
-      {items.map((item) => {
+      {[...items, ...moreItems].map((item) => {
         console.log(item);
         switch (item.type) {
           case "playlist":
@@ -53,6 +101,17 @@ export function VideoGrid({ items }: VideoGridProps) {
             return <div>{item.type}</div>;
         }
       })}
+      {loadMore && (
+        <div className="flex items-center justify-center text-sm uppercase">
+          {isLoading === 0 ? (
+            <button ref={ref} className="uppercase">
+              Load more
+            </button>
+          ) : (
+            <div>{isLoading === -1 ? "" : "Loading..."}</div>
+          )}
+        </div>
+      )}
     </div>
   );
 }

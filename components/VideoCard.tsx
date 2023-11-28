@@ -7,6 +7,7 @@ import { useCallback, useRef, useState } from "react";
 import { Video, VideoDetails } from "@/api/Video";
 import { fetchVideo } from "@/api/fetchVideo";
 import { getThumbnail } from "../api/getThumbnail";
+import { getVideoType } from "./getVideoType";
 
 interface VideoCardProps {
   video: Video;
@@ -56,6 +57,8 @@ export function VideoCard({ video, playlistId, isPlaying }: VideoCardProps) {
     (item) => item.quality === "medium",
   );
 
+  const { isLive, isShort } = getVideoType(video);
+
   return (
     <div
       onMouseOver={handleMouseOver}
@@ -70,15 +73,19 @@ export function VideoCard({ video, playlistId, isPlaying }: VideoCardProps) {
       )}
     >
       <Link
-        href={{
-          pathname: "/watch",
-          query: playlistId
-            ? {
-                v: video.videoId,
-                list: playlistId,
+        href={
+          isShort
+            ? { pathname: `/shorts/${video.videoId}` }
+            : {
+                pathname: "/watch",
+                query: playlistId
+                  ? {
+                      v: video.videoId,
+                      list: playlistId,
+                    }
+                  : { v: video.videoId },
               }
-            : { v: video.videoId },
-        }}
+        }
       >
         <div className="relative w-full overflow-hidden border-b border-slate-300 dark:border-slate-900">
           <Image
@@ -98,8 +105,10 @@ export function VideoCard({ video, playlistId, isPlaying }: VideoCardProps) {
             />
           )}
           <div className="absolute bottom-1 right-1 rounded-sm bg-slate-800/80 px-1 text-xs text-slate-50">
-            {video.lengthSeconds === 0 ? (
+            {isShort ? (
               "short"
+            ) : isLive ? (
+              "live"
             ) : (
               <>
                 {hours > 0 ? (

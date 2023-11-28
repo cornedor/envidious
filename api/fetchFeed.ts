@@ -8,7 +8,7 @@ export interface Feed {
   videos: Video[];
 }
 
-export async function fetchFeed(searchParams: { region?: string }) {
+export async function fetchFeed(searchParams: { page?: string }) {
   const instance = getInstance();
   const lang = getHeaders().get("Accept-Language");
   const headers = new Headers();
@@ -20,6 +20,10 @@ export async function fetchFeed(searchParams: { region?: string }) {
   headers.append(`Authorization`, `Bearer ${token}`);
 
   const url = new URL("api/v1/auth/feed", instance);
+
+  if (searchParams.page) {
+    url.searchParams.set("page", searchParams.page);
+  }
 
   const result = await fetch(url, {
     headers,
