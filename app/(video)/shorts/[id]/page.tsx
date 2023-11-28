@@ -19,7 +19,7 @@ export default async function WatchPage({
     return <div>404</div>;
   }
 
-  const authorThumbnail = data.authorThumbnails.at(-1);
+  const authorThumbnail = data.authorThumbnails?.at(-1);
 
   return (
     <div>

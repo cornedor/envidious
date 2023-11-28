@@ -48,6 +48,9 @@ export default async function WatchPage({
 
   const authorThumbnail = data.authorThumbnails.at(-1);
 
+  // Storyboards can be used to extract the video aspect ratio
+  const storyboard = data.storyboards?.at(-1);
+
   return (
     <div>
       <Header />
@@ -56,7 +59,14 @@ export default async function WatchPage({
           flex: Boolean(playlist),
         })}
       >
-        <div className="player mx-auto flex min-h-[200px] flex-1 bg-slate-950">
+        <div
+          className="player mx-auto flex min-h-[200px] flex-1 bg-slate-950"
+          style={{
+            aspectRatio: `${storyboard?.width ?? 16} / ${
+              storyboard?.height ?? 9
+            }`,
+          }}
+        >
           <VideoPlayer
             className="h-full w-full"
             video={data}
