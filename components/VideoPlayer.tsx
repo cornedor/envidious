@@ -19,6 +19,7 @@ interface VideoPlayerProps {
   redirectOnEnded?: string;
   instance: string;
   dashManifest?: Awaited<ReturnType<typeof fetchInnertubeInfo>>;
+  skipPlyr?: boolean;
 }
 
 export const VideoPlayer = React.memo(function VideoPlayer({
@@ -27,6 +28,7 @@ export const VideoPlayer = React.memo(function VideoPlayer({
   redirectOnEnded,
   instance,
   dashManifest,
+  skipPlyr,
 }: VideoPlayerProps) {
   const ref = useRef<HTMLVideoElement | null>(null);
   const thumbnail = getThumbnail(video.videoThumbnails ?? [], "medium");
@@ -183,7 +185,9 @@ export const VideoPlayer = React.memo(function VideoPlayer({
         }
       });
     });
-    dash.on("bufferLoaded", bufferLoaded);
+    if (!skipPlyr) {
+      dash.on("bufferLoaded", bufferLoaded);
+    }
 
     dash.on("qualityChangeRendered", (e) => {
       if (player) {

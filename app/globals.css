@@ -58,3 +58,7 @@
     rgba(0, 0, 0, 0) 100%
   );
 }
+
+.shorts-container {
+  height: calc(100vh - theme(height.16));
+}
