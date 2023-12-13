@@ -28,7 +28,7 @@ export async function fetchTrending(searchParams: {
   const result = await fetch(url, {
     headers,
     next: {
-      revalidate: 1200,
+      revalidate: 120,
     },
   });
 

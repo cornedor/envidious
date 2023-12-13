@@ -33,7 +33,11 @@ export async function fetchSponsorBlock(videoId: string) {
 
   url.searchParams.append("videoID", videoId);
 
-  const result = await fetch(url);
+  const result = await fetch(url, {
+    next: {
+      revalidate: 120,
+    },
+  });
   try {
     const data = await result.json();
 

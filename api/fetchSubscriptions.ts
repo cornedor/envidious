@@ -26,7 +26,7 @@ export async function fetchSubscriptions() {
   const result = await fetch(url, {
     headers,
     next: {
-      revalidate: 1200,
+      revalidate: 3600,
       tags: ["subs"],
     },
   });

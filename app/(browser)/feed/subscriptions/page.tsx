@@ -28,7 +28,7 @@ export default async function SubscriptionsPage({
     "use server";
 
     const feed = await fetchFeed({
-      page: String(page),
+      page: page ? String(page) : undefined,
     });
 
     return stripShorts(feed);
