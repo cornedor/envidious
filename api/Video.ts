@@ -76,7 +76,7 @@ export interface FormatStream {
   size: string;
 }
 
-interface AuthorThumbnail {
+export interface AuthorThumbnail {
   url: string;
   width: number;
   height: number;

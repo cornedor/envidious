@@ -13,6 +13,7 @@ import { getInstance } from "@/api/getInstance";
 import { fetchInnertubeInfo } from "@/api/fetchInnertubeInfo";
 import { notFound } from "next/navigation";
 import { Metadata, ResolvingMetadata } from "next";
+import { fetchComments } from "@/api/fetchComments";
 
 interface WatchPageProps {
   searchParams: { v?: string; list?: string };
@@ -43,6 +44,8 @@ export default async function WatchPage({ searchParams }: WatchPageProps) {
   if (!data) {
     return <div>404</div>;
   }
+
+  const comments = fetchComments(data.videoId, "top");
 
   const nextInPlaylistIndex = playlist?.videos
     ? playlist.videos.findIndex((item) => item.videoId === data.videoId)
@@ -153,6 +156,43 @@ export default async function WatchPage({ searchParams }: WatchPageProps) {
               />
             </div>
           ) : null}
+          <div>
+            <h3 className="font-bold">Comments</h3>
+            {(await comments)?.comments.map((comment) => {
+              const image = comment.authorThumbnails?.at(-1);
+              return (
+                <div
+                  key={comment.commentId}
+                  className="mt-4 flex gap-2 border-l-2 pl-2"
+                >
+                  <div className="w-8">
+                    {image?.url && (
+                      <Image
+                        src={image?.url}
+                        width={32}
+                        height={32}
+                        className="aspect-square w-16 min-w-0 rounded-full"
+                        alt=""
+                      />
+                    )}
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <strong className="font-semibold">{comment.author} </strong>
+                    <span className="text-slate-600">
+                      {comment.publishedText}
+                    </span>
+                    <small className="float-right">
+                      {comment.isPinned ? "pinned" : ""}
+                    </small>
+                    <div
+                      className="html-content"
+                      dangerouslySetInnerHTML={{ __html: comment.contentHtml }}
+                    />
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
         <div className="flex flex-col gap-2 py-2">
           {data.recommendedVideos.map((item) => (
