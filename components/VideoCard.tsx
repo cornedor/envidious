@@ -73,15 +73,19 @@ export function VideoCard({ video, playlistId, isPlaying }: VideoCardProps) {
       )}
     >
       <Link
-        href={{
-          pathname: "/watch",
-          query: playlistId
-            ? {
-                v: video.videoId,
-                list: playlistId,
+        href={
+          isShort
+            ? { pathname: `/shorts/${video.videoId}` }
+            : {
+                pathname: "/watch",
+                query: playlistId
+                  ? {
+                      v: video.videoId,
+                      list: playlistId,
+                    }
+                  : { v: video.videoId },
               }
-            : { v: video.videoId },
-        }}
+        }
       >
         <div className="relative w-full overflow-hidden border-b border-slate-300 dark:border-slate-900">
           <Image
